@@ -31,6 +31,9 @@
 
       Quagga.onDetected(function(result) {
         console.log(result);
+        // alert the barcode value
+        alert(result.codeResult.code);
+        
       });
     </script>
   </body>
