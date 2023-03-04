@@ -1,89 +1,73 @@
-// import { useRouter } from "next/router";
-
-// const ScanResultPage = () => {
-//   const router = useRouter();
-//   const { code } = router.query;
-
-//   return (
-//     <div>
-//       <h1>Scan Result</h1>
-//       <p>Barcode code: {code}</p>
-//     </div>
-//   );
-// };
-
-// export default ScanResultPage;
-
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { config } from "dotenv";
+config();
 
 const ScanResultPage = () => {
   const router = useRouter();
   const { code } = router.query;
   const [product, setProduct] = useState(null);
-  const [error, setError] = useState(null);
+  const [nutrients, setNutrients] = useState(null);
 
   useEffect(() => {
     if (code) {
+      // Search Open Food Facts API for product data
       axios
         .get(`https://world.openfoodfacts.org/api/v0/product/${code}.json`)
         .then((response) => {
           const product = response.data.product;
-          if (product) {
-            setProduct(product);
-            setError(null);
-          } else {
-            searchNutritionix(code);
+          setProduct(product);
+
+          // If product not found, search USDA National Nutrient Database
+          if (!product) {
+            axios
+              .get(
+                `https://api.nal.usda.gov/fdc/v1/foods/search?query=${code}&pageSize=1&api_key=${process.env.USDA_API_KEY}`
+              )
+              .then((response) => {
+                const food = response.data.foods[0];
+                setNutrients(food.foodNutrients);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
           }
         })
         .catch((error) => {
           console.error(error);
-          setError(error.message);
         });
     }
   }, [code]);
-
-  const searchNutritionix = (code) => {
-    axios
-      .get(
-        `https://api.nutritionix.com/v1_1/item?upc=${code}&appId=fbbe6262&appKey=0e5ce13d54b2ae6cd7d8acd0c1972cf7`
-      )
-      .then((response) => {
-        const product = {
-          product_name: response.data.item_name,
-          generic_name: null,
-          ingredients_text: response.data.nf_ingredient_statement,
-          image_url: null,
-        };
-        setProduct(product);
-        setError(null);
-      })
-      .catch((error) => {
-        console.error(error);
-        setError("Product not found.");
-      });
-  };
 
   if (!code) {
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!product) {
-    return <p>Loading...</p>;
+  if (!product && !nutrients) {
+    return <p>No product found for barcode {code}.</p>;
   }
 
   return (
     <div>
-      <h1>{product.product_name}</h1>
-      <p>{product.generic_name}</p>
-      <p>{product.ingredients_text}</p>
-      <img src={product.image_url} alt={product.product_name} />
+      {product && (
+        <>
+          <h1>{product.product_name}</h1>
+          <p>{product.generic_name}</p>
+          <p>{product.ingredients_text}</p>
+          <img src={product.image_url} alt={product.product_name} />
+        </>
+      )}
+      {nutrients && (
+        <>
+          <h1>{nutrients.name}</h1>
+          {nutrients.foodNutrient.map((nutrient) => (
+            <p key={nutrient.nutrient.name}>
+              {nutrient.nutrient.name}: {nutrient.amount}{nutrient.nutrient.unitName}
+            </p>
+          ))}
+        </>
+      )}
     </div>
   );
 };
