@@ -11,7 +11,7 @@ const IndexPage = () => {
       </div>
        {/* use link to navigate to scan page */}
       <Link href="/scan">
-        <a>Scan</a>
+        Scan
       </Link>
 
 
