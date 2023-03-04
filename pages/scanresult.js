@@ -15,42 +15,43 @@
 // export default ScanResultPage;
 
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const ScanResultPage = () => {
   const router = useRouter();
   const { code } = router.query;
-  const [searchResults, setSearchResults] = useState(null);
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    if (!code) {
-      return;
+    if (code) {
+      axios
+        .get(`https://world.openfoodfacts.org/api/v0/product/${code}.json`)
+        .then((response) => {
+          const product = response.data.product;
+          setProduct(product);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
-
-    const searchUrl = `https://world.openfoodfacts.org/api/v0/product/${code}.json`;
-
-    fetch(searchUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setSearchResults(data.product);
-      })
-      .catch((error) => console.error(error));
   }, [code]);
+
+  if (!code) {
+    return <p>Loading...</p>;
+  }
+
+  if (!product) {
+    return <p>No product found for barcode {code}.</p>;
+  }
 
   return (
     <div>
-      <h1>Scan Result</h1>
-      {/* <p>Barcode code: {code}</p> */}
-      {searchResults && (
-     <div>
-          <h2>Search Results</h2>
-          <p>Name: {searchResults.product_name}</p>
-          <p>Brand: {searchResults.brands}</p>
-          <p>Ingredients: {searchResults.ingredients_text}</p>
-        </div>
-      )}
+      <h1>{product.product_name}</h1>
+      <p>{product.generic_name}</p>
+      <p>{product.ingredients_text}</p>
+      <img src={product.image_url} alt={product.product_name} />
     </div>
   );
 };
