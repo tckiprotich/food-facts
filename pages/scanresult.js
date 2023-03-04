@@ -54,7 +54,7 @@ const ScanResultPage = () => {
   return (
     <div>
       <h1>{product.product_name}</h1>
-      <p>{product.generic_name}</p>
+      {/* <p>{product.generic_name}</p> */}
       <p>{product.ingredients_text}</p>
       <img src={product.image_url} alt={product.product_name} />
     </div>
