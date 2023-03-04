@@ -1,4 +1,5 @@
 import BarcodeScanner from "../components/BarcodeScanner";
+import Link from "next/link";
 
 const IndexPage = () => {
   return (
@@ -8,8 +9,11 @@ const IndexPage = () => {
 
         {/* <BarcodeScanner /> */}
       </div>
-      {/* // lonk to scan page */}
-      <a href="/scan">Scan</a>
+       {/* use link to navigate to scan page */}
+      <Link href="/scan">
+        <a>Scan</a>
+      </Link>
+
 
 
     </>
