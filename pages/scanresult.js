@@ -17,6 +17,17 @@ const ScanResultPage = () => {
         })
         .catch((error) => {
           console.error(error);
+          axios
+            .get(
+              `https://api.nal.usda.gov/fdc/v1/foods/search?query=${code}&pageSize=1&api_key=8xHruEEQncI7q81n2BheQHqvTq4snh46rRGud6cj`
+            )
+            .then((response) => {
+              const product = response.data.foods[0];
+              setProduct(product);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         });
     }
   }, [code]);
@@ -29,20 +40,23 @@ const ScanResultPage = () => {
     return <p>No product found for barcode {code}.</p>;
   }
 
-  const labels = product.labels_tags;
-  const certifications = product.certifications_tags;
-  const awards = product.awards_tags;
-  const countries = product.countries_tags;
+  if (product.brands === "USDA") {
+    return (
+      <div>
+        <h1>{product.description}</h1>
+        <p>{product.foodNutrients[3].nutrientName}: {product.foodNutrients[3].value}{product.foodNutrients[3].unitName}</p>
+        <p>{product.foodNutrients[1].nutrientName}: {product.foodNutrients[1].value}{product.foodNutrients[1].unitName}</p>
+        <p>{product.foodNutrients[2].nutrientName}: {product.foodNutrients[2].value}{product.foodNutrients[2].unitName}</p>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h1>{product.product_name}</h1>
       <p>{product.generic_name}</p>
+      <p>{product.ingredients_text}</p>
       <img src={product.image_url} alt={product.product_name} />
-      <p>Labels: {labels.join(", ")}</p>
-      <p>Certifications: {certifications.join(", ")}</p>
-      <p>Awards: {awards.join(", ")}</p>
-      <p>Countries where sold: {countries.join(", ")}</p>
     </div>
   );
 };
