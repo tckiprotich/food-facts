@@ -8,6 +8,10 @@ const IndexPage = () => {
 
         {/* <BarcodeScanner /> */}
       </div>
+      {/* // lonk to scan page */}
+      <a href="/scan">Scan</a>
+
+
     </>
   );
 };
