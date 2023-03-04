@@ -23,6 +23,7 @@ const ScanResultPage = () => {
   const router = useRouter();
   const { code } = router.query;
   const [product, setProduct] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (code) {
@@ -30,20 +31,51 @@ const ScanResultPage = () => {
         .get(`https://world.openfoodfacts.org/api/v0/product/${code}.json`)
         .then((response) => {
           const product = response.data.product;
-          setProduct(product);
+          if (product) {
+            setProduct(product);
+            setError(null);
+          } else {
+            searchNutritionix(code);
+          }
         })
         .catch((error) => {
           console.error(error);
+          setError(error.message);
         });
     }
   }, [code]);
+
+  const searchNutritionix = (code) => {
+    axios
+      .get(
+        `https://api.nutritionix.com/v1_1/item?upc=${code}&appId=fbbe6262&appKey=0e5ce13d54b2ae6cd7d8acd0c1972cf7`
+      )
+      .then((response) => {
+        const product = {
+          product_name: response.data.item_name,
+          generic_name: null,
+          ingredients_text: response.data.nf_ingredient_statement,
+          image_url: null,
+        };
+        setProduct(product);
+        setError(null);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError("Product not found.");
+      });
+  };
 
   if (!code) {
     return <p>Loading...</p>;
   }
 
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   if (!product) {
-    return <p>No product found for barcode {code}.</p>;
+    return <p>Loading...</p>;
   }
 
   return (
