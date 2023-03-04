@@ -44,6 +44,20 @@ const ScanResultPage = () => {
       <h1>Scan Result</h1>
       <p>Barcode code: {code}</p>
       {searchResults && (
+        // if scan search is null, display not found
+
+        if (searchResults == null) {
+            <p>Product not found</p>
+        }
+        // if scan search is not null, display product info
+        else {
+        <p>Product found</p>
+        }
+
+        
+        
+
+
         <div>
           <h2>Search Results</h2>
           <p>Name: {searchResults.product_name}</p>
