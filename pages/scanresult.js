@@ -29,13 +29,16 @@ const ScanResultPage = () => {
     return <p>No product found for barcode {code}.</p>;
   }
 
+  const name = product.product_name;
+  const ingredients = product.ingredients_text;
   const labels = product.labels_tags;
+  const image = product.image_url;
 
   return (
     <div>
-      <h1>{product.product_name}</h1>
-      
-      <img src={product.image_url} alt={product.product_name} />
+      <h1>{name}</h1>
+      <img src={image} alt={name} />
+      <p>Ingredients: {ingredients}</p>
       <p>Labels: {labels.join(", ")}</p>
     </div>
   );
