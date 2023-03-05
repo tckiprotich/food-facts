@@ -7,7 +7,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Barcode Scanner</h1>
+      <h1 className="text-center text-bold">Barcode Scanner</h1>
       <BarcodeScanner onDetected={handleBarcodeDetected} />
     </div>
   );
