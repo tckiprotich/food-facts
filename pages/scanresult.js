@@ -44,7 +44,7 @@ const ScanResultPage = () => {
         <figure class="bg-slate-100 min-h-screen rounded-xl p-8 dark:bg-slate-800">
           <div class="text-slate-700 dark:text-slate-500">
             {/* display the product name */}
-            <h1 className="text-center mx-auto py-10 text-2xl decoration-4">
+            <h1 className="text-center mx-auto py-10 text-4xl decoration-4">
               {name}
             </h1>
           </div>
@@ -72,10 +72,7 @@ const ScanResultPage = () => {
                 {/* labels */}
                 <span className="text-center font-bold">Labels:</span>
                 <br />
-                for (let i = 0; i < labels.length; i++) {
-                <li>{labels[i]}</li>
-                }
-
+                 {/* iterate over labels and display them in a list */}
                 
                  {labels.join(", ")}
               </div>
