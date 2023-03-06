@@ -40,7 +40,7 @@ const ScanResultPage = () => {
 
   return (
     <div className="min-h-screen pb-30">
-      <section >
+      <section className="min-h-screen" >
       
 
         <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
@@ -73,11 +73,8 @@ const ScanResultPage = () => {
           </div>
         </figure>
       </section>
-      {/* // iterate over the following array and display the values in a list */}
-      <h1 className="center mx-auto py-10 maroon">{name}</h1>
-      {/* <img src={image} alt={name} />
-      <p>Ingredients: {ingredients}</p>
-      <p>Labels: {labels.join(", ")}</p> */}
+      
+      
     </div>
   );
 };
