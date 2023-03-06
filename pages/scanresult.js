@@ -40,14 +40,14 @@ const ScanResultPage = () => {
 
   return (
     <div>
-      <section>
+      <section className="min-h-screen">
       <div class="text-slate-700 dark:text-slate-500">
             <h2 class="text-lg font-bold">{name}</h2>
           </div>
-          
+
         <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
           <img
-            class="w-24 h-24 rounded-full mx-auto"
+            class=" rounded-full mx-auto"
             src={image}
             alt=""
             width="384"
