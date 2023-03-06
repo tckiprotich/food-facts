@@ -39,8 +39,8 @@ const ScanResultPage = () => {
   const image = product.image_url;
 
   return (
-    <div>
-      <section className="min-h-screen">
+    <div className="min-h-screen pb-30">
+      <section >
       
 
         <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
