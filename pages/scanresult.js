@@ -39,60 +39,43 @@ const ScanResultPage = () => {
   const image = product.image_url;
 
   return (
-    // <div>
-    //    // iterate over the following array and display the values in a list
-
-
-
-
-
-    //   <h1>{name}</h1>
-    //   <img src={image} alt={name} />
-    //   <p>Ingredients: {ingredients}</p>
-    //   <p>Labels: {labels.join(", ")}</p>
-    // </div>
-
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
-        {product_name}
-      </h1>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 md:pr-8">
-          {image_url && (
-            <Image
-              src={image_url}
-              alt={product_name}
-              width={500}
-              height={500}
-              className="rounded-md mb-8"
-            />
-          )}
-        </div>
-        <div className="md:w-1/2">
-          {ingredients_text && (
-            <div className="mb-8">
-              <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-4">
-                Ingredients
-              </h2>
-              <p className="text-gray-700">{ingredients_text}</p>
-            </div>
-          )}
-          {labels_tags && (
-            <div>
-              <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-4">
-                Labels
-              </h2>
-              <ul className="list-disc list-inside">
-                {labels_tags.map((label) => (
-                  <li key={label} className="text-gray-700">
-                    {label}
-                  </li>
-                ))}
+    <div>
+      <section>
+        <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
+          <img
+            class="w-24 h-24 rounded-full mx-auto"
+            src={image}
+            alt=""
+            width="384"
+            height="512"
+          />
+          <div class="text-slate-700 dark:text-slate-500">
+            <h2 class="text-lg font-bold">{name}</h2>
+          </div>
+          <div class="pt-6 text-center space-y-4">
+            <blockquote>
+              <ul class="text-lg font-medium">
+                {/* loop through the ingredients and display them in a list */}
+                <li>{ingredients}</li>
               </ul>
-            </div>
-          )}
-        </div>
-      </div>
+            </blockquote>
+            <figcaption class="font-medium">
+              <div class="text-sky-500 dark:text-sky-400">
+                {/* labels */}
+                {labels}
+              </div>
+              {/* <div class="text-slate-700 dark:text-slate-500">
+        Staff Engineer, Algolia
+      </div> */}
+            </figcaption>
+          </div>
+        </figure>
+      </section>
+      {/* // iterate over the following array and display the values in a list */}
+      <h1 className="center mx-auto py-10 maroon">{name}</h1>
+      <img src={image} alt={name} />
+      <p>Ingredients: {ingredients}</p>
+      <p>Labels: {labels.join(", ")}</p>
     </div>
   );
 };
