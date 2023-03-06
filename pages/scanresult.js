@@ -49,19 +49,16 @@ const ScanResultPage = () => {
         <h1 className="text-center mx-auto py-10 text-2xl decoration-4">{name}</h1>
       </div>
            <img class="w-32 h-32 rounded-full mx-auto" src={image} alt="" width="384" height="512" /> 
-          {/* <img
-            class=" rounded-full mx-auto"
-            src={image}
-            alt=""
-            width="384"
-            height="512"
-          /> */}
+          
           
           <div class="pt-6 text-center space-y-4">
             <blockquote>
               <ul class="text-lg font-medium">
                 {/* loop through the ingredients and display them in a list */}
-                <li>Ingredients: {ingredients}</li>
+                <li>
+                  <span className="text-center font-bold">Ingredients:</span>
+                   {ingredients}
+                </li>
               </ul>
             </blockquote>
             <figcaption class="font-medium">
