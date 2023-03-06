@@ -62,6 +62,7 @@ const ScanResultPage = () => {
                 {/* loop through the ingredients and display them in a list */}
                 <li>
                   <span className="text-center font-bold">Ingredients:</span>
+                  <br />
                   {ingredients}
                 </li>
               </ul>
