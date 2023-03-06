@@ -41,6 +41,10 @@ const ScanResultPage = () => {
   return (
     <div>
       <section>
+      <div class="text-slate-700 dark:text-slate-500">
+            <h2 class="text-lg font-bold">{name}</h2>
+          </div>
+          
         <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
           <img
             class="w-24 h-24 rounded-full mx-auto"
@@ -49,20 +53,18 @@ const ScanResultPage = () => {
             width="384"
             height="512"
           />
-          <div class="text-slate-700 dark:text-slate-500">
-            <h2 class="text-lg font-bold">{name}</h2>
-          </div>
+          
           <div class="pt-6 text-center space-y-4">
             <blockquote>
               <ul class="text-lg font-medium">
                 {/* loop through the ingredients and display them in a list */}
-                <li>{ingredients}</li>
+                <li>Ingredients: {ingredients}</li>
               </ul>
             </blockquote>
             <figcaption class="font-medium">
               <div class="text-sky-500 dark:text-sky-400">
                 {/* labels */}
-                {labels}
+                Labels: {labels.join(", ")}
               </div>
               {/* <div class="text-slate-700 dark:text-slate-500">
         Staff Engineer, Algolia
@@ -73,9 +75,9 @@ const ScanResultPage = () => {
       </section>
       {/* // iterate over the following array and display the values in a list */}
       <h1 className="center mx-auto py-10 maroon">{name}</h1>
-      <img src={image} alt={name} />
+      {/* <img src={image} alt={name} />
       <p>Ingredients: {ingredients}</p>
-      <p>Labels: {labels.join(", ")}</p>
+      <p>Labels: {labels.join(", ")}</p> */}
     </div>
   );
 };
