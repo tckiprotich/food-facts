@@ -40,24 +40,29 @@ const ScanResultPage = () => {
 
   return (
     <div className="min-h-screen pb-30">
-      <section className="min-h-screen" >
-      
-
+      <section className="min-h-screen">
         <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
-        <div class="text-slate-700 dark:text-slate-500">
-        {/* display the product name */}
-        <h1 className="text-center mx-auto py-10 text-2xl decoration-4">{name}</h1>
-      </div>
-           <img class="w-32 h-32 rounded-full mx-auto" src={image} alt="" width="384" height="512" /> 
-          
-          
+          <div class="text-slate-700 dark:text-slate-500">
+            {/* display the product name */}
+            <h1 className="text-center mx-auto py-10 text-2xl decoration-4">
+              {name}
+            </h1>
+          </div>
+          <img
+            class="w-32 h-32 rounded-full mx-auto"
+            src={image}
+            alt=""
+            width="384"
+            height="512"
+          />
+
           <div class="pt-6 text-center space-y-4">
             <blockquote>
               <ul class="text-lg font-medium">
                 {/* loop through the ingredients and display them in a list */}
                 <li>
                   <span className="text-center font-bold">Ingredients:</span>
-                   {ingredients}
+                  {ingredients}
                 </li>
               </ul>
             </blockquote>
@@ -73,8 +78,6 @@ const ScanResultPage = () => {
           </div>
         </figure>
       </section>
-      
-      
     </div>
   );
 };
