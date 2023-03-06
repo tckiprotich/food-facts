@@ -24,11 +24,11 @@ const ScanResultPage = () => {
   }, [code]);
 
   if (!code) {
-    return <p>Loading...</p>;
+    return <p className="text-center mx-auto py-10 ">Loading...</p>;
   }
 
   if (!product) {
-    return <p>No product found for barcode {code}.</p>;
+    return <p  className="text-center mx-auto py-10 ">No product found for barcode {code}.</p>;
   }
 
   // iterate over the following array and display the values in a list
