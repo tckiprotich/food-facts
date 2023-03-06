@@ -70,7 +70,9 @@ const ScanResultPage = () => {
             <figcaption class="font-medium">
               <div class="text-sky-500 dark:text-sky-400 pt-20">
                 {/* labels */}
-                Labels: {labels.join(", ")}
+                <span className="text-center font-bold">Labels:</span>
+                <br />
+                 {labels.join(", ")}
               </div>
               {/* <div class="text-slate-700 dark:text-slate-500">
         Staff Engineer, Algolia
