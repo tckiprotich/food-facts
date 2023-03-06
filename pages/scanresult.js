@@ -62,7 +62,7 @@ const ScanResultPage = () => {
               </ul>
             </blockquote>
             <figcaption class="font-medium">
-              <div class="text-sky-500 dark:text-sky-400">
+              <div class="text-sky-500 dark:text-sky-400 pt-20">
                 {/* labels */}
                 Labels: {labels.join(", ")}
               </div>
