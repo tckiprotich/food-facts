@@ -46,7 +46,7 @@ const ScanResultPage = () => {
         <figure class="bg-slate-100 rounded-xl p-8 dark:bg-slate-800">
         <div class="text-slate-700 dark:text-slate-500">
         {/* display the product name */}
-        <h1 className="center mx-auto py-10 text-2xl ">{name}</h1>
+        <h1 className="center mx-auto py-10 text-2xl decoration-4">{name}</h1>
       </div>
            <img class="w-32 h-32 rounded-full mx-auto" src={image} alt="" width="384" height="512" /> 
           {/* <img
