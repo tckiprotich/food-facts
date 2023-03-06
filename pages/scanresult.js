@@ -72,6 +72,11 @@ const ScanResultPage = () => {
                 {/* labels */}
                 <span className="text-center font-bold">Labels:</span>
                 <br />
+                for (let i = 0; i < labels.length; i++) {
+                <li>{labels[i]}</li>
+                }
+
+                
                  {labels.join(", ")}
               </div>
               {/* <div class="text-slate-700 dark:text-slate-500">
